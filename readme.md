@@ -8,9 +8,9 @@ See the [official site](https://www.garfield.com/)
 
 ## Screenshots
 
-![Screenshot1](src/resources/images/capture1.png)
+![Screenshot1](.docs/images/capture1.png)
 
-![Screenshot2](src/resources/images/capture2.png)
+![Screenshot2](.docs/images/capture2.png)
 
 ## Changelog
 
