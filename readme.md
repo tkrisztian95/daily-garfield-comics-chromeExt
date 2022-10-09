@@ -11,3 +11,11 @@ See the [official site](https://www.garfield.com/)
 ![Screenshot1](src/resources/images/capture1.png)
 
 ![Screenshot2](src/resources/images/capture2.png)
+
+## Changelog
+
+### v0.0.2
+- Bugfixes
+
+### v0.0.1
+- Initial release published in Chrome store
