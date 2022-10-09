@@ -19,13 +19,13 @@ function imageExists(image_url) {
 
 }
 
-function getDailyStripSrc(date) {
+function getDailyStripSrc(dateStr) {
 
-    let d = new Date(JSON.parse(date));
-    let fullYear = String(d.getFullYear());
+    let date = new Date(JSON.parse(dateStr));
+    let fullYear = String(date.getFullYear());
     let year = fullYear.slice(-2);
-    let month = d.getMonth() < 10 ? "0" + (d.getMonth() + 1) : d.getMonth() + 1;
-    let day = d.getDate() < 10 ? "0" + d.getDate() : d.getDate();
+    let month = ("0" + (date.getMonth() + 1)).slice(-2);
+    let day = ("0" +  date.getDate()).slice(-2);
 
     var dirPath = "/comics/ga/" + fullYear + "/";
     var fileName = "ga" + year + month + day;
