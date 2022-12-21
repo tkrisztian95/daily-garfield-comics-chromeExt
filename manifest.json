@@ -1,5 +1,5 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Daily Garfield Comics",
     "author": "Tóth Krisztián Gyula",
     "version": "0.0.2",
@@ -10,19 +10,19 @@
         "48": "src/resources/icon48.png",
         "128": "src/resources/icon128.png"
     },
-    "browser_action": {
+    "action": {
         "default_popup": "src/popup.html"
     },
-    "web_accessible_resources": [
-        "src/resources/images/*"
-    ],
+    "web_accessible_resources": [{
+        "resources": ["src/resources/images/*"]
+    }],
     "background": {
-        "scripts": [
+        "service_worker": [
             "src/background.js"
         ],
         "persistent": false
     },
-    "permissions": [
+    "host_permissions": [
         "http://picayune.uclick.com/*"
       ]
 }
