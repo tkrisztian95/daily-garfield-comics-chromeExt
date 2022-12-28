@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Daily Garfield Comics",
     "author": "Tóth Krisztián Gyula",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Display daily Garfield comic strips",
     "icons": {
         "16": "src/resources/icon16.png",
