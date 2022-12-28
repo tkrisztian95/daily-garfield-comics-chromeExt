@@ -1,13 +1,13 @@
-showComicsImage(new Date());
+showComicsImage();
 
 function showComicsImage(date) {
-    chrome.runtime.sendMessage(
-        { contentScriptQuery: "queryComicsStrip", date: JSON.stringify(date) },
-        imageSrc => {
-            console.log("Comics href: " + imageSrc);
-            var image = document.createElement("img");
-            image.src = imageSrc;
-            image.alt = "garfield " + date.getDate(); + "/" + date.getMonth() + "/" + date.getFullYear();
-            document.getElementById('comicsWrapper').appendChild(image);
-        });
+    // 1. Send a message to the service worker requesting the today's comics strip image url
+    chrome.runtime.sendMessage("get-image-href",
+        (response) => {
+        // 3. Got an asynchronous response with the data from the service worker
+        var image = document.createElement("img");
+        image.src = response;
+        image.alt = "Today's Garfield Comic Strip"
+        document.getElementById('comicsImgWrapper').appendChild(image);
+    });
 }
