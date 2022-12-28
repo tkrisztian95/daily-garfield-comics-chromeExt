@@ -1,27 +1,23 @@
 const URL = "http://picayune.uclick.com";
 
 chrome.runtime.onMessage.addListener(
-    function (request, sender, sendResponse) {
-        if (request.contentScriptQuery == "queryComicsStrip") {
-            sendResponse(getDailyStripSrc(request.date));
-            return true;  // Will respond asynchronously.
+    function (message, sender, sendResponse) {
+        if (message == "get-image-href") {
+            getDaily().then(sendResponse)
+            return true;
         }
     });
 
-function imageExists(image_url) {
-
-    var http = new XMLHttpRequest();
-
-    http.open('HEAD', image_url, false);
-    http.send();
-
-    return http.status != 404;
-
+async function checkExists(image_url) {
+    const response = await fetch(image_url, {
+        method: 'HEAD'
+    });
+    return response.ok;
 }
 
-function getDailyStripSrc(dateStr) {
+async function getDaily() {
 
-    let date = new Date(JSON.parse(dateStr));
+    let date = new Date();
     let fullYear = String(date.getFullYear());
     let year = fullYear.slice(-2);
     let month = ("0" + (date.getMonth() + 1)).slice(-2);
@@ -34,9 +30,9 @@ function getDailyStripSrc(dateStr) {
     var jpgImage = path + ".jpg";
     var gifImage = path + ".gif";
 
-    if (imageExists(gifImage)) {
+    if (await checkExists(gifImage)) {
         return gifImage;
-    } else if (imageExists(jpgImage)) {
+    } else if (await checkExists(jpgImage)) {
         return jpgImage;
     } else {
         return "resources/images/garfield404.png";
